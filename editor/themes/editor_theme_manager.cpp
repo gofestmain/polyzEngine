@@ -285,39 +285,39 @@ EditorThemeManager::ThemeConfiguration EditorThemeManager::_create_theme_config(
 
 			// Please use alphabetical order if you're adding a new theme here.
 			if (config.preset == "Breeze Dark") {
-				preset_accent_color = Color(0.26, 0.76, 1.00);
+				preset_accent_color = Color::hex(0xFE6D39FF); // Orange accent
 				preset_base_color = Color(0.24, 0.26, 0.28);
 				preset_contrast = config.default_contrast;
 			} else if (config.preset == "Godot 2") {
-				preset_accent_color = Color(0.53, 0.67, 0.89);
+				preset_accent_color = Color::hex(0xFE6D39FF); // Orange accent
 				preset_base_color = Color(0.24, 0.23, 0.27);
 				preset_contrast = config.default_contrast;
 			} else if (config.preset == "Gray") {
-				preset_accent_color = Color(0.44, 0.73, 0.98);
+				preset_accent_color = Color::hex(0xFE6D39FF); // Orange accent
 				preset_base_color = Color(0.24, 0.24, 0.24);
 				preset_contrast = config.default_contrast;
 			} else if (config.preset == "Light") {
-				preset_accent_color = Color(0.18, 0.50, 1.00);
+				preset_accent_color = Color::hex(0xFE6D39FF); // Orange accent
 				preset_base_color = Color(0.9, 0.9, 0.9);
 				// A negative contrast rate looks better for light themes, since it better follows the natural order of UI "elevation".
 				preset_contrast = -0.06;
 			} else if (config.preset == "Solarized (Dark)") {
-				preset_accent_color = Color(0.15, 0.55, 0.82);
+				preset_accent_color = Color::hex(0xFE6D39FF); // Orange accent
 				preset_base_color = Color(0.04, 0.23, 0.27);
 				preset_contrast = config.default_contrast;
 			} else if (config.preset == "Solarized (Light)") {
-				preset_accent_color = Color(0.15, 0.55, 0.82);
+				preset_accent_color = Color::hex(0xFE6D39FF); // Orange accent
 				preset_base_color = Color(0.89, 0.86, 0.79);
 				// A negative contrast rate looks better for light themes, since it better follows the natural order of UI "elevation".
 				preset_contrast = -0.06;
 			} else if (config.preset == "Black (OLED)") {
-				preset_accent_color = Color(0.45, 0.75, 1.0);
+				preset_accent_color = Color::hex(0xFE6D39FF); // Orange accent
 				preset_base_color = Color(0, 0, 0);
 				// The contrast rate value is irrelevant on a fully black theme.
 				preset_contrast = 0.0;
 				preset_draw_extra_borders = true;
 			} else { // Default
-				preset_accent_color = Color(0.44, 0.73, 0.98);
+				preset_accent_color = Color::hex(0xFE6D39FF); // Orange accent
 				preset_base_color = Color(0.21, 0.24, 0.29);
 				preset_contrast = config.default_contrast;
 			}

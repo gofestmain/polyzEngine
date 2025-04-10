@@ -1606,7 +1606,7 @@ void EditorNode::_dialog_display_save_error(String p_file, Error p_error) {
 			} break;
 			default: {
 				show_accept(TTR("Error while saving."), TTR("OK"));
-			} break;
+			}
 		}
 	}
 }
@@ -1631,7 +1631,7 @@ void EditorNode::_dialog_display_load_error(String p_file, Error p_error) {
 			} break;
 			default: {
 				show_accept(vformat(TTR("Error while loading file '%s'."), p_file.get_file()), TTR("OK"));
-			} break;
+			}
 		}
 	}
 }
@@ -6446,8 +6446,7 @@ void EditorNode::reload_instances_with_path_in_edited_scenes() {
 					inherited_state = inherited_state->get_base_scene_state();
 				}
 
-				// Ensure the inheritance chain is loaded in the correct order so that cache can
-				// be properly updated.
+				// Ensure the inheritance chain is loaded in the correct order so that cache can be properly updated.
 				for (String path : required_load_paths) {
 					if (current_packed_scene.is_valid()) {
 						base_packed_scene = current_packed_scene;
@@ -6931,6 +6930,7 @@ void EditorNode::_feature_profile_changed() {
 		editor_dock_manager->set_dock_enabled(FileSystemDock::get_singleton(), !fs_dock_disabled);
 		editor_dock_manager->set_dock_enabled(ImportDock::get_singleton(), !fs_dock_disabled && !profile->is_feature_disabled(EditorFeatureProfile::FEATURE_IMPORT_DOCK));
 		editor_dock_manager->set_dock_enabled(history_dock, !profile->is_feature_disabled(EditorFeatureProfile::FEATURE_HISTORY_DOCK));
+		editor_dock_manager->set_dock_enabled(chat_dock, !profile->is_feature_disabled(EditorFeatureProfile::FEATURE_CHAT_DOCK));
 
 		editor_main_screen->set_button_enabled(EditorMainScreen::EDITOR_3D, !profile->is_feature_disabled(EditorFeatureProfile::FEATURE_3D));
 		editor_main_screen->set_button_enabled(EditorMainScreen::EDITOR_SCRIPT, !profile->is_feature_disabled(EditorFeatureProfile::FEATURE_SCRIPT));
@@ -6945,6 +6945,7 @@ void EditorNode::_feature_profile_changed() {
 		editor_dock_manager->set_dock_enabled(NodeDock::get_singleton(), true);
 		editor_dock_manager->set_dock_enabled(FileSystemDock::get_singleton(), true);
 		editor_dock_manager->set_dock_enabled(history_dock, true);
+		editor_dock_manager->set_dock_enabled(chat_dock, true);
 		editor_main_screen->set_button_enabled(EditorMainScreen::EDITOR_3D, true);
 		editor_main_screen->set_button_enabled(EditorMainScreen::EDITOR_SCRIPT, true);
 		if (!Engine::get_singleton()->is_recovery_mode_hint()) {
@@ -7903,6 +7904,9 @@ EditorNode::EditorNode() {
 
 	history_dock = memnew(HistoryDock);
 
+	// Chat dock.
+	chat_dock = memnew(ChatDock);
+
 	// Scene: Top left.
 	editor_dock_manager->add_dock(SceneTreeDock::get_singleton(), TTRC("Scene"), EditorDockManager::DOCK_SLOT_LEFT_UR, ED_SHORTCUT_AND_COMMAND("docks/open_scene", TTRC("Open Scene Dock")), "PackedScene");
 
@@ -7921,6 +7925,9 @@ EditorNode::EditorNode() {
 	// History: Full height right, behind Node.
 	editor_dock_manager->add_dock(history_dock, TTRC("History"), EditorDockManager::DOCK_SLOT_RIGHT_UL, ED_SHORTCUT_AND_COMMAND("docks/open_history", TTRC("Open History Dock")), "History");
 
+	// Chat: Full height right, behind History.
+	editor_dock_manager->add_dock(chat_dock, TTRC("Chat"), EditorDockManager::DOCK_SLOT_RIGHT_UL, ED_SHORTCUT_AND_COMMAND("docks/open_chat", TTRC("Open Chat Dock")), "Chat");
+
 	// Add some offsets to left_r and main hsplits to make LEFT_R and RIGHT_L docks wider than minsize.
 	left_r_hsplit->set_split_offset(270 * EDSCALE);
 	main_hsplit->set_split_offset(-270 * EDSCALE);
@@ -7932,7 +7939,7 @@ EditorNode::EditorNode() {
 	// Dock numbers are based on DockSlot enum value + 1.
 	default_layout->set_value(docks_section, "dock_3", "Scene,Import");
 	default_layout->set_value(docks_section, "dock_4", "FileSystem");
-	default_layout->set_value(docks_section, "dock_5", "Inspector,Node,History");
+	default_layout->set_value(docks_section, "dock_5", "Inspector,Node,History,Chat");
 
 	// There are 4 vsplits and 4 hsplits.
 	for (int i = 0; i < editor_dock_manager->get_vsplit_count(); i++) {

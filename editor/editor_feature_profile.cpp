@@ -74,7 +74,7 @@ const char *EditorFeatureProfile::feature_identifiers[FEATURE_MAX] = {
 	"filesystem_dock",
 	"import_dock",
 	"history_dock",
-	"game",
+	"chat_dock",
 };
 
 void EditorFeatureProfile::set_disable_class(const StringName &p_class, bool p_disabled) {
@@ -311,6 +311,7 @@ void EditorFeatureProfile::_bind_methods() {
 	BIND_ENUM_CONSTANT(FEATURE_FILESYSTEM_DOCK);
 	BIND_ENUM_CONSTANT(FEATURE_IMPORT_DOCK);
 	BIND_ENUM_CONSTANT(FEATURE_HISTORY_DOCK);
+	BIND_ENUM_CONSTANT(FEATURE_CHAT_DOCK);
 	BIND_ENUM_CONSTANT(FEATURE_GAME);
 	BIND_ENUM_CONSTANT(FEATURE_MAX);
 }

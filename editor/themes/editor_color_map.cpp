@@ -46,7 +46,7 @@ void EditorColorMap::create() {
 	// This can be a basis for proper palette validation later.
 
 	// Convert:               FROM       TO
-	add_conversion_color_pair("#478cbf", "#478cbf"); // Godot Blue
+	add_conversion_color_pair("#478cbf", "#fe6d39"); // Godot Orange (was Blue)
 	add_conversion_color_pair("#414042", "#414042"); // Godot Gray
 
 	add_conversion_color_pair("#ffffff", "#414141"); // Pure white
@@ -63,7 +63,7 @@ void EditorColorMap::create() {
 	add_conversion_color_pair("#e0e0e0", "#5a5a5a"); // Common icon color
 	add_conversion_color_pair("#808080", "#808080"); // GUI disabled color
 	add_conversion_color_pair("#b3b3b3", "#363636"); // GUI disabled light color
-	add_conversion_color_pair("#699ce8", "#699ce8"); // GUI highlight color
+	add_conversion_color_pair("#699ce8", "#fe6d39"); // GUI highlight color (orange)
 	add_conversion_color_pair("#f9f9f9", "#606060"); // Scrollbar grabber highlight color
 
 	add_conversion_color_pair("#c38ef1", "#a85de9"); // Animation
@@ -74,8 +74,8 @@ void EditorColorMap::create() {
 	add_conversion_color_pair("#8eef97", "#2fa139"); // GUI Control
 	add_conversion_color_pair("#76ad7b", "#64a66a"); // GUI Control Abstract
 
-	add_conversion_color_pair("#5fb2ff", "#0079f0"); // Selection (blue)
-	add_conversion_color_pair("#003e7a", "#2b74bb"); // Selection (darker blue)
+	add_conversion_color_pair("#5fb2ff", "#fe6d39"); // Selection (orange, was blue)
+	add_conversion_color_pair("#003e7a", "#b34b28"); // Selection (darker orange, was darker blue)
 	add_conversion_color_pair("#f7f5cf", "#615f3a"); // Gizmo (yellow)
 
 	// Rainbow
@@ -83,7 +83,7 @@ void EditorColorMap::create() {
 	add_conversion_color_pair("#ffe345", "#ffe337"); // Yellow
 	add_conversion_color_pair("#80ff45", "#74ff34"); // Green
 	add_conversion_color_pair("#45ffa2", "#2cff98"); // Aqua
-	add_conversion_color_pair("#45d7ff", "#22ccff"); // Blue
+	add_conversion_color_pair("#45d7ff", "#fe6d39"); // Orange (was Blue)
 	add_conversion_color_pair("#8045ff", "#702aff"); // Purple
 	add_conversion_color_pair("#ff4596", "#ff2781"); // Pink
 
@@ -101,9 +101,9 @@ void EditorColorMap::create() {
 
 	// Other objects
 	add_conversion_color_pair("#ffca5f", "#fea900"); // Mesh resource (orange)
-	add_conversion_color_pair("#2998ff", "#68b6ff"); // Shape resource (blue)
-	add_conversion_color_pair("#a2d2ff", "#4998e3"); // Shape resource (light blue)
-	add_conversion_color_pair("#69c4d4", "#29a3cc"); // Input event highlight (light blue)
+	add_conversion_color_pair("#2998ff", "#fe6d39"); // Shape resource (orange, was blue)
+	add_conversion_color_pair("#a2d2ff", "#fe9c77"); // Shape resource (light orange, was light blue)
+	add_conversion_color_pair("#69c4d4", "#fe6d39"); // Input event highlight (orange, was light blue)
 
 	// Animation editor tracks
 	// The property track icon color is set by the common icon color.

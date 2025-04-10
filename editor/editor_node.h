@@ -35,6 +35,8 @@
 #include "editor/editor_data.h"
 #include "editor/editor_folding.h"
 #include "editor/plugins/editor_plugin.h"
+#include "editor/history_dock.h"
+#include "editor/chat_dock.h"
 
 typedef void (*EditorNodeInitCallback)();
 typedef void (*EditorPluginInitializeCallback)();
@@ -258,6 +260,7 @@ private:
 	EditorSelection *editor_selection = nullptr;
 	EditorSettingsDialog *editor_settings_dialog = nullptr;
 	HistoryDock *history_dock = nullptr;
+	ChatDock *chat_dock = nullptr;
 
 	ProjectExportDialog *project_export = nullptr;
 	ProjectSettingsEditor *project_settings_editor = nullptr;
