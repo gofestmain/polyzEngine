@@ -31,22 +31,50 @@
 #pragma once
 
 #include "scene/gui/box_container.h"
+#include "core/io/http_client.h"
 
 class RichTextLabel;
 class LineEdit;
 class Button;
 class ConfigFile;
+class HBoxContainer;
+class CheckBox;
 
 class ChatDock : public VBoxContainer {
 	GDCLASS(ChatDock, VBoxContainer);
+
+private:
+	enum RequestState {
+		REQUEST_NONE,
+		REQUEST_CONNECTING,
+		REQUEST_CONNECTED,
+		REQUEST_REQUESTING,
+		REQUEST_PROCESSING_RESPONSE
+	};
+
+	struct HTTPRequestData {
+		String host;
+		int port;
+		String path;
+		String body;
+		Vector<String> headers;
+	};
 
 	RichTextLabel *chat_display = nullptr;
 	HBoxContainer *input_container = nullptr;
 	LineEdit *input_field = nullptr;
 	Button *send_button = nullptr;
+	CheckBox *include_all_files_checkbox = nullptr;
+	
+	Ref<HTTPClient> http_client;
+	bool waiting_for_response = false;
+	RequestState http_request_state = REQUEST_NONE;
+	HTTPRequestData http_request_data;
 	
 	Vector<String> message_history;
 	int history_position = -1;
+	
+	void _process_http_request();
 	
 	void _send_message();
 	void _handle_ai_response(const String &p_response);
@@ -63,5 +91,6 @@ protected:
 
 public:
 	void add_message(const String &p_from, const String &p_message, bool p_is_ai = false);
+	void add_formatted_ai_response(const String &p_message);
 	ChatDock();
 }; 
