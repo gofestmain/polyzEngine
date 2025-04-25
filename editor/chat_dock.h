@@ -30,8 +30,8 @@
 
 #pragma once
 
-#include "scene/gui/box_container.h"
 #include "core/io/http_client.h"
+#include "scene/gui/box_container.h"
 
 class RichTextLabel;
 class LineEdit;
@@ -65,22 +65,36 @@ private:
 	LineEdit *input_field = nullptr;
 	Button *send_button = nullptr;
 	CheckBox *include_all_files_checkbox = nullptr;
-	
+	Button *index_project_button = nullptr;
+
 	Ref<HTTPClient> http_client;
 	bool waiting_for_response = false;
 	RequestState http_request_state = REQUEST_NONE;
 	HTTPRequestData http_request_data;
-	
+	int process_iterations = 0;
+	double request_start_time = 0;
+
+	// For tracking requested files
+	Array requested_files;
+	bool waiting_for_file_request = false;
+
 	Vector<String> message_history;
 	int history_position = -1;
-	
+	int thinking_message_id = -1;
+
 	void _process_http_request();
-	
+	String _get_file_content(const String &p_path);
+	void _send_file_content(const Array &p_files);
+	void _make_second_api_call(const String &p_prompt, const Dictionary &p_file_contents);
+	void _make_direct_api_call(const String &p_prompt);
+
 	void _send_message();
 	void _handle_ai_response(const String &p_response);
+	void _print_token_usage(const Dictionary &p_token_usage);
 	void _input_text_submitted(const String &p_text);
 	void _input_special_key_pressed(const Ref<InputEvent> &p_event);
 	void _on_send_button_pressed();
+	void _on_index_project_button_pressed();
 
 	void _save_layout_to_config(Ref<ConfigFile> p_layout, const String &p_section) const;
 	void _load_layout_from_config(Ref<ConfigFile> p_layout, const String &p_section);
@@ -93,4 +107,4 @@ public:
 	void add_message(const String &p_from, const String &p_message, bool p_is_ai = false);
 	void add_formatted_ai_response(const String &p_message);
 	ChatDock();
-}; 
+};
